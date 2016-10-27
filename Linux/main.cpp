@@ -21,6 +21,7 @@ int ArgPos(char *str, int argc, char **argv) {
 
 int main(int argc, char **argv)
 {
+        printf("LargeVis Jos Fork 1");
 	long long i;
     if (argc < 3)
     {

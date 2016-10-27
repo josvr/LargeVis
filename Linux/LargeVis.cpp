@@ -58,15 +58,31 @@ void LargeVis::load_from_file(char *infile)
     printf("Reading input file %s ......", infile); fflush(stdout);
 	fscanf(fin, "%lld%lld", &n_vertices, &n_dim);
 	vec = new real[n_vertices * n_dim];
-	for (long long i = 0; i < n_vertices; ++i)
+	long long n_expected = n_vertices * n_dim;
+        long long n_read = 0;
+        for (long long i = 0; i < n_vertices; ++i)
 	{
 		for (long long j = 0; j < n_dim; ++j)
 		{
 			fscanf(fin, "%f", &vec[i * n_dim + j]);
+                        n_read++;
 		}
 	}
+        if (!feof(fin)) { 
+           printf("End of file not reached");
+           printf("REMAINING START>>");
+           int c;
+           while ((c = getc(fin)) != EOF)
+              printf("%d,",c);
+           printf("<<END");
+           exit(1); 
+        } 
 	fclose(fin);
-	printf(" Done.\n");
+        if ( n_read != n_expected ) { 
+           printf("Read items does not match expected");
+           exit(1);
+        }
+	printf(" Done (correct).\n");
 	printf("Total vertices : %lld\tDimension : %lld\n", n_vertices, n_dim);
 }
 
