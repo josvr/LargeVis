@@ -1,6 +1,9 @@
 import LargeVis
 import argparse
+import datetime;
 
+
+print('LargeVis started: Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 parser = argparse.ArgumentParser()
 parser.add_argument('-fea', default = 1, type = int, help = 'whether to visualize high-dimensional feature vectors or networks')
 parser.add_argument('-input', default = '', help = 'input file')
@@ -26,3 +29,6 @@ else:
 Y = LargeVis.run(args.outdim, args.threads, args.samples, args.prop, args.alpha, args.trees, args.neg, args.neigh, args.gamma, args.perp)
 
 LargeVis.save(args.output)
+
+
+print('LargeVis ended Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))

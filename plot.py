@@ -3,7 +3,10 @@ matplotlib.use('Agg')
 import numpy
 import matplotlib.pyplot as plt
 import argparse
+import datetime;
 
+
+print('Plot Started Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-input', default = '', help = 'input file')
@@ -43,4 +46,5 @@ if args.range != '':
 plt.savefig(args.output, dpi = 500)
 
 
+print('Plot Ended Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 
