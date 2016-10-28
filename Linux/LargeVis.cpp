@@ -68,14 +68,19 @@ void LargeVis::load_from_file(char *infile)
                         n_read++;
 		}
 	}
-        if (!feof(fin)) { 
-           printf("End of file not reached");
-           printf("REMAINING START>>");
+        if (!feof(fin)) {
            int c;
-           while ((c = getc(fin)) != EOF)
-              printf("%d,",c);
-           printf("<<END");
-           exit(1); 
+           c = getc(fin);
+           if ( c != EOF && c != 10 ) { 
+             printf("\nEnd of file not reached\n");
+             printf("REMAINING START\n");
+             putchar(c);
+             while ((c = getc(fin)) != EOF) { 
+               putchar(c);
+             } 
+             printf("REMAINING END\n");
+             exit(1);
+           } 
         } 
 	fclose(fin);
         if ( n_read != n_expected ) { 
